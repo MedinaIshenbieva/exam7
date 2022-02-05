@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'partial/simple_search.html' %}
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+    <h1>Опросы</h1>
+    {% for poll in polls %}
+        <h3>{{ poll.upper }}</h3>
+        <p><a href="{{ poll.get_absolute_url }}">Подробнее...</a></p>
+        <p><a href="{% url "poll_update_view" poll.pk %}">Редактировать</a></p>
+        <p><a href="{% url "poll_delete_view" poll.pk %}">Удалить</a></p>
+    {% endfor %}
+
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+{% endblock %}

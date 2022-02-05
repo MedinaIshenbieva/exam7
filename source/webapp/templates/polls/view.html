@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Poll {{ poll.pk }}{% endblock %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'poll_add' %}">Создание опросa</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "poll_update_view" poll.pk %}">Редактировать</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "poll_delete_view" poll.pk %}">Удалить</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "poll_choice_create" poll.pk %}">Добавить ответ</a>
+    </li>
+{% endblock %}
+{% block content %}
+    <h1>{{ poll.title }}</h1>
+    <br>
+    <h3>Вариант ответов</h3>
+    {% for choice in choices %}
+        <span>{{ forloop.counter }}</span>
+        <p>{{ choice.answer }}</p>
+        <p><a href="{% url "choice_update_view" choice.pk %}">Изменить</a></p>
+        <p><a href="{% url "choice_delete_view" choice.pk %}">Удалить</a></p>
+    {% endfor %}
+    <h3>Oтветы</h3>
+    {% for answer in poll.answers.all %}
+        {{ answer.question }}
+        {{ answer.choices }}
+        {% if not forloop.last %}, {% else %}. {% endif %}
+    {% endfor %}
+{% endblock %}

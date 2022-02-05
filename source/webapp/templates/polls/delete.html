@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="POST">
+    {% csrf_token %}
+        <h2>Введите название Опроса {{ poll.title }}</h2>
+        {% include 'partial/form.html' with button_text="Удалить" %}
+    </form>
+    <a href="{% url "poll_view" poll.pk %}">Нет</a>
+{% endblock %}
