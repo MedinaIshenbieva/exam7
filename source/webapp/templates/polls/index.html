@@ -11,6 +11,9 @@
         <p><a href="{{ poll.get_absolute_url }}">Подробнее...</a></p>
         <p><a href="{% url "poll_update_view" poll.pk %}">Редактировать</a></p>
         <p><a href="{% url "poll_delete_view" poll.pk %}">Удалить</a></p>
+        <p><a href="{% url "poll_choice_create" poll.pk %}">добавление варианта ответа</a></p>
+        <p><a href="{% url "choice_update_view" poll.pk %}">Редактировать вариантов ответа </a></p>
+        <p><a href="{% url "choice_delete_view" poll.pk %}">Удалить вариантов ответа </a></p>
     {% endfor %}
 
     {% if is_paginated %}
