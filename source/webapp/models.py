@@ -28,7 +28,7 @@ class Choice(models.Model):
     answer = models.TextField(max_length=200, verbose_name="Опрос")
 
     def __str__(self):
-        return f"{self.pk} - {self.answer}"
+        return f"{self.pk}. {self.answer}"
 
     class Meta:
         db_table = 'choices'
@@ -44,6 +44,9 @@ class Answer(models.Model):
     choices = models.ForeignKey("webapp.Choice", on_delete=models.DO_NOTHING,
                                     related_name="answers",
                                     verbose_name="Вариант ответа", )
+
+    def __str__(self):
+        return f"{self.pk}.  {self.question} - {self.choices}"
 
     class Meta:
         db_table = 'answers'
