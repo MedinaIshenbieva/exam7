@@ -13,7 +13,7 @@ class ExampleMiddleware:
         for path in request_path_data:
             try:
                 id = int(path)
-                if id < 100:
+                if id > 100:
                     return HttpResponse("id от 1 до 100 зарезервированы")
             except ValueError:
                 pass
